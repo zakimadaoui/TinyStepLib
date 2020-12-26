@@ -88,7 +88,6 @@ void loop() {
 
   recvCommand();
   if(newData){
-    Serial.println("Hi im working in parallel now!");
     parseCommand();
     execCommand();
     newData = false;
