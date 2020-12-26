@@ -12,3 +12,6 @@ Please note that:
 
 * This is still experimental and requires more tuning
 * The library uses TIMER2 of the atmega328 microcontroller, so make sure not to use libraries that occupy the same timer (ex: tone()).
+
+
+The "main.cpp" file shows an example of how to use the library
