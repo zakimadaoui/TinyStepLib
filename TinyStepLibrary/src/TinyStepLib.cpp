@@ -55,7 +55,7 @@ void TinyStepLib::detach(Stepper* stepper){
 
 ISR(TIMER2_COMPA_vect){
     for (Stepper* stpr : steppers){
-        if(stpr != nullptr) stpr->actuate();
+        if(stpr != nullptr) stpr->makeAstep();
     }
 }
     
