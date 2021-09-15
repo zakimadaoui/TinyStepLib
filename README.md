@@ -66,16 +66,55 @@ void setup(){
 
 ```
 
+### Setting the direction and speed
 
+The direction can be either 0 or 1. Generally 0 is clockwize and 1 is counterclockwize, but it can be reversed due to the stepper motor connection with the driver.
 
-### controlling the position
-details, code (SOON)
+```cpp
+stepper_1.setDirection(0);
+```
 
-### controlling the speed
+The speed can be specified in Degrees/sec or in Steps/sec. The errors in the actual speed are discusses in the **Speed errors** section.
 
-details, code and graphs (SOON)
+```cpp
+//set speed to 170°/s
+stepper_1.setSpeedInDegrees(170); 
+
+//set speed to 107 steps/sec
+stepper_1.setSpeedInSteps(107);
+```
+
+### Controlling the position
+
+You can move the stepper motor with an relative angles or in steps or even spin it (keep it rotating).
+
+```cpp
+// in angles
+stepper_1.moveWithAngle(360.0);
+// in steps
+stepper_1.moveWithSteps(100);
+// spin the motor (keep rotating)
+stepper_1.spin()
+// call: stepper_1.stop() to stop the motor from spinning
+```
 
 ### Callback
-details, code (SOON)
+
+You can set a callback for each motor so that after the function `moveWithAngle()` or `moveWithSteps()` is called a callback will be triggered after the motor reaches its position (Since this is open loop, it is not garenteed that the stepper will evetually reach that position).  
+
+This callback mechanism allows you to add more functionality. For example, if you are using a position encoder, when the callback triggers you can check whether the motor truly reached its target position. And if there is any step losses you can compensate for it.
+
+```cpp
+void onTargetReached1(){
+//your logic
+}
+
+void setup(){
+//...
+stepper.setOnTargetReachedCallback(onTargetReached1);
+//...
+}
+
+```
 
 
