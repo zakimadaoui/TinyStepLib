@@ -33,18 +33,18 @@ int micro_stepping     = 16  ;
 Stepper stepper(step_port_pin, dir_port_pin, motor_angle, micro_stepping);
 ```
 
-* **step_port_pin**: this is a two charachter string that specifies which I/O port (B,C or D) and which pin in the port are used for the **STEP** pin. 
-* **dir_port_pin**: this is a two charachter string that specifies which I/O port (B,C or D) and which pin in the port are used for the **DIR** pin. 
+* **step_port_pin**: this is a two character string that specifies which I/O port (B, C or D) and which pin in the port are used for the **STEP** pin. 
+* **dir_port_pin**: this is a two character string that specifies which I/O port (B, C or D) and which pin in the port are used for the **DIR** pin. 
 * **motor_angle**: the step angle of the motor (without micro stepping)
 * **micro_stepping**: the micro-stepping used
 
-For example, if an Arduino uno board(with Atmega328p) is used and the **STEP** pin is pin 11 on the board, then ```step_port_pin = "B2"```.   
-The following picture can help identifying the name of the other I/O ports and pins for the UNO board pins. If you are using another board you have to check its pin mapping.
+For example, if an Arduino Uno board(with Atmega328p) is used and the **STEP** pin is pin 11 on the board, then ```step_port_pin = "B2"```.   
+The following picture can help to identify the name of the other I/O ports and pins for the UNO board pins. If you are using another board you have to check its pin mapping.
 
 ![uno pin mapping](https://i.pinimg.com/originals/26/7f/60/267f60a5f7973c27e2bdc2b08b1fb845.png)
 
 
-Now you can initialize the library and attach the motors. Remeber, a maximum of 6 motors can be attached at the same time. If you want to use more motors you will have to do some  multiplexing by attaching and detaching motors, 
+Now you can initialize the library and attach the motors. Remember, a maximum of 6 motors can be attached at the same time. If you want to use more motors you will have to do some multiplexing by attaching and detaching motors, 
 
 
 ```cpp
@@ -68,7 +68,7 @@ void setup(){
 
 ### Setting the direction and speed
 
-The direction can be either 0 or 1. Generally 0 is clockwize and 1 is counterclockwize, but it can be reversed due to the stepper motor connection with the driver.
+The direction can be either 0 or 1. Generally 0 is clockwise and 1 is counterclockwise, but it can be reversed due to the stepper motor connection with the driver.
 
 ```cpp
 stepper_1.setDirection(0);
@@ -100,7 +100,7 @@ stepper_1.spin()
 
 ### Callback
 
-You can set a callback for each motor so that after the function `moveWithAngle()` or `moveWithSteps()` is called a callback will be triggered after the motor reaches its position (Since this is open loop, it is not garenteed that the stepper will evetually reach that position).  
+You can set a callback for each motor so that after the function `moveWithAngle()` or `moveWithSteps()` is called a callback will be triggered after the motor reaches its position (Since this is open loop, it is not guaranteed that the stepper will eventually reach that position).  
 
 This callback mechanism allows you to add more functionality. For example, if you are using a position encoder, when the callback triggers you can check whether the motor truly reached its target position. And if there is any step losses you can compensate for it.
 
@@ -120,11 +120,18 @@ stepper.setOnTargetReachedCallback(onTargetReached1);
 
 ### Speed errors
 
-As long as you operate the stepper motor at low speeds (less than °/sec or less than steps/sec) then the actual speed of the motor will be very accurate. Howoever, the larger you set the speed, the more it will drift from the desired value.
+As long as you operate the stepper motor at low speeds (less than 200°/sec or less than 1500 steps/sec) then the actual speed of the motor will be very accurate. However, the larger you set the desired speed, the more it will drift from that value.
 
 Another factor that plays an important role in the accuracy of the speed is the micro stepping used. Believe it or not, the more micro stepping you use the less accurate the speed will be. 
 
-You can take a look at the graphs to get a better understanding of both phemomenons mentionned above. They show the difference between the desired speed and the actual one at different micro-stepping settings. The motor used for this graph has a 1.8° step angle.
+You can take a look at the graphs to get a better understanding of both phenomenons mentioned above. They show the difference between the desired speed and the actual one at different micro-stepping settings. The motor used for this graph has a 1.8° step angle.
 
 
+![microstepping 1/4](img/1-4ms.png)
+![microstepping 1/16](img/1-16ms.png)
+![microstepping 1/32](img/1-32ms.png)
+![microstepping 1/64](img/1-64ms.png)
+![microstepping steps](img/steps.png)
 
+
+The last graph shows how the micro-stepping effects the speed accuracy. Since larger micro-stepping (like 1/64) requires a lot more steps/sec to achieve the same speed in deg/sec as compared to 1/16 micro-stepping, so it drifts more.
