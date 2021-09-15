@@ -118,3 +118,13 @@ stepper.setOnTargetReachedCallback(onTargetReached1);
 ```
 
 
+### Speed errors
+
+As long as you operate the stepper motor at low speeds (less than °/sec or less than steps/sec) then the actual speed of the motor will be very accurate. Howoever, the larger you set the speed, the more it will drift from the desired value.
+
+Another factor that plays an important role in the accuracy of the speed is the micro stepping used. Believe it or not, the more micro stepping you use the less accurate the speed will be. 
+
+You can take a look at the graphs to get a better understanding of both phemomenons mentionned above. They show the difference between the desired speed and the actual one at different micro-stepping settings. The motor used for this graph has a 1.8° step angle.
+
+
+
