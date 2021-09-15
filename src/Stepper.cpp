@@ -97,7 +97,7 @@ void Stepper::makeAstep()
 }
 
 
-//TODO: mention that this takes only positive values 
+//this takes only positive values 
 void Stepper::moveWithAngle(double angle){
     //stop, cancel spin and reset current_steps
     stop(); 

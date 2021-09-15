@@ -3,7 +3,6 @@
 
 #include "Stepper.h"
 
-//TODO: mention this limit in github repo
 #define MAX_STEPPERS 6
 
 class TinyStepLib{

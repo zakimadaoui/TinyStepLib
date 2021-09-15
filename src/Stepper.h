@@ -94,7 +94,7 @@ public:
     //------------------------------------------------------------
 
 private:
-    void (*__onTagetReached)(void) = nullptr; //TODO: mention it in the git repo (//TODO: code for the callback must not be blocking)
+    void (*__onTagetReached)(void) = nullptr; 
     void pulseStepPin();
     void setStepperIndex(uint8_t stepper_index);
     uint8_t getStepperIndex();

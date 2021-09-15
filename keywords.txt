@@ -1,0 +1,17 @@
+Stepper	KEYWORD1
+TinyStepLib	KEYWORD1
+init	KEYWORD2
+attach	KEYWORD2
+detach	KEYWORD2
+moveWithAngle	KEYWORD2
+moveWithSteps	KEYWORD2
+makeAstep	KEYWORD2
+stop	KEYWORD2
+spin	KEYWORD2
+setSpeedInDegrees	KEYWORD2
+setSpeedInSteps	KEYWORD2
+getSpeedInDegrees	KEYWORD2
+getSpeedInSteps	KEYWORD2
+setDirection	KEYWORD2
+getDirection	KEYWORD2
+setOnTargetReachedCallback	KEYWORD2
