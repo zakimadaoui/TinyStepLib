@@ -1,4 +1,6 @@
 .pio
 .vscode
+src/main.cpp
 test
 platformio.ini
+lib

@@ -81,7 +81,7 @@ public:
     void makeAstep();
     void stop();
     //-----------------------------------------------------------
-    void spin(double speed);
+    void spin();
     void setSpeedInDegrees(uint16_t speed);
     void setSpeedInSteps(uint16_t speed);
     uint16_t getSpeedInDegrees();

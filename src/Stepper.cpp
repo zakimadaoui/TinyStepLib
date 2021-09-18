@@ -75,14 +75,16 @@ void Stepper::pulseStepPin()
 
 void Stepper::makeAstep()
 {
-    if (isInSpinMode) pulseStepPin();
-    else if (rotateMotor)
+    if (rotateMotor)
     {
         current_tick++;
         if (current_tick == ticks_for_one_step) //this condition controlls the speed of the motor
         {
             current_tick = 0;
-            if (current_step != target_steps) // target angle not reached yet
+            if (isInSpinMode) // keep spinning
+                pulseStepPin();
+            
+            else if (current_step != target_steps) // target angle not reached yet
             {
                 pulseStepPin();
                 current_step++;
@@ -127,8 +129,9 @@ void Stepper::stop(){
     target_steps = 0;
 }
 
-void Stepper::spin(double spd){
+void Stepper::spin(){
     isInSpinMode = true;
+    rotateMotor = true;
 }
 
 
